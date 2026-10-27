@@ -1,0 +1,22 @@
+<!doctype html>
+<!-- Public https page registered as the Enable Banking redirect URL (localhost is refused).
+     It forwards the bank's ?code=…&state=… to LifeBoard running on this computer.
+     Nothing is stored or sent anywhere else. -->
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LifeBoard</title>
+</head>
+<body style="font-family: system-ui, sans-serif; padding: 24px">
+  <p>Retour vers LifeBoard…</p>
+  <p id="manual" hidden>Si rien ne se passe, LifeBoard n'est pas lancé. Démarre-le puis
+    <a id="link">clique ici</a>.</p>
+  <script>
+    const target = 'http://localhost:3000/api/enablebanking/callback' + location.search;
+    document.getElementById('link').href = target;
+    setTimeout(() => (document.getElementById('manual').hidden = false), 2000);
+    location.replace(target);
+  </script>
+</body>
+</html>
